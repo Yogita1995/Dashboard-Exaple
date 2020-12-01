@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  date: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.date=new Date();
   }
 
 }

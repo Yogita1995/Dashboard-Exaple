@@ -7,6 +7,9 @@ import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+// import { MatCalenderModule } from '@angular/material/datepicker'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -15,7 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    PostsComponent,    
+    PostsComponent,
   ],
   imports: [
     CommonModule,
@@ -23,8 +26,11 @@ import { MatDividerModule } from '@angular/material/divider';
     SharedModule,
     MatSidenavModule,
     MatDividerModule,
- 
-    
+    // MatCalenderModule
+    MatDatepickerModule,
+    MatFormFieldModule
+
+
   ]
 })
 export class DefaultModule { }
