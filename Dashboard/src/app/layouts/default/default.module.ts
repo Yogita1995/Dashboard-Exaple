@@ -10,6 +10,14 @@ import { MatDividerModule } from '@angular/material/divider';
 // import { MatCalenderModule } from '@angular/material/datepicker'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction'; 
+FullCalendarModule.registerPlugins([ 
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 
 
@@ -28,7 +36,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDividerModule,
     // MatCalenderModule
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FullCalendarModule
 
 
   ]
