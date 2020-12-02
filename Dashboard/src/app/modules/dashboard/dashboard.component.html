@@ -1,6 +1,38 @@
-<!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
-<div class="col-12">
-    <full-calendar [options]="calendarOptions"></full-calendar>
+<div class="col-12">   
+    <full-calendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" 
+    #ucCalendar>
+    </full-calendar>
 </div>
 
-
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content p-5">    
+        <div class="col-sm-12 form-group">
+            <input type="text" class="form-control" name="fname" id="name-f" placeholder="Employee Id" required>
+        </div>
+        <div class="col-sm-12 form-group">
+            <input type="text" class="form-control" name="lname" id="name-l" placeholder="Employee Name" required>
+        </div>
+        <div class="col-sm-12 form-group">
+            <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
+        </div>
+        <div class="col-sm-12 form-group">
+            <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
+        </div>
+        <div class="col-sm-12 form-group">
+            <input type="address" class="form-control" name="address" id="address-2" placeholder="Days" required>
+        </div>       
+        <div class="col-sm-12 form-group">
+            <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
+        </div>         
+        
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+        <button class="btn btn-primary float-right">Submit</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

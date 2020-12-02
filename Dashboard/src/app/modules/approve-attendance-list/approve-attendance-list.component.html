@@ -1,0 +1,62 @@
+<div id="main" class="mb-2 mt-5">
+    <section id="advanced">
+        <div class="row text-left" matchHeight="card">
+            <div class="col-sm-12">
+                <div class="card shadow maincardtopmargin">
+                    <div class="card-header no-padding-bottom">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="card-title">Approved List</h4>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="card-body">                       
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Employee Id</th>
+                                        <th>Employee Name</th>
+                                        <th>Date</th>                                        
+                                        <th>Actions</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                 
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Abc123</td>
+                                        <td>ABCD PQRST</td>
+                                        <td>20/12/2020</td>                                        
+                                        <td>
+                                            <button class="btn btn-raised btn-primary mr-1"
+                                            [routerLink]="['../approve-edit']">
+                                              Action
+                                            </button>                                         
+                                        </td>
+                                        <th><span style="color:green">Approved</span></th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Abc123567</td>
+                                        <td>XYZ PQRST</td>
+                                        <td>4/08/2020</td>                                        
+                                        <td>
+                                            <button class="btn btn-raised btn-primary mr-1"
+                                                >
+                                               Action
+                                            </button>
+                                           
+                                        </td>
+                                        <th><span style="color:red">Pending</span></th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

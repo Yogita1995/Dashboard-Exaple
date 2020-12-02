@@ -31,8 +31,11 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/@fullcalendar/daygrid/main.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css"
               
-              "./node_modules/@fullcalendar/daygrid/main.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
@@ -103,8 +106,11 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              
-              "./node_modules/@fullcalendar/daygrid/main.css"
+              "./node_modules/@fullcalendar/daygrid/main.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css"
+             
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
