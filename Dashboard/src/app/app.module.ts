@@ -8,11 +8,13 @@ import { DefaultModule } from './layouts/default/default.module';
 import { SharedModule } from './shared/shared.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarModule } from 'primeng/calendar';
+import { LeaveDetailsComponent } from './modules/leave-details/leave-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LeaveDetailsComponent,
       
     
   

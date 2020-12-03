@@ -10,5 +10,12 @@ mat-drawer-container{
     height: 100%;
 }
 mat-drawer-content{
-    padding: 20px;
+    padding: 20px; 
+    margin-left: 250px;
+}
+@media only screen and (max-width: 600px) {
+    mat-drawer-content{
+        padding: 20px; 
+        margin-left: 0px;
+    }
 }

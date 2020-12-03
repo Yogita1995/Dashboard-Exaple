@@ -30,6 +30,7 @@
     "bootstrap": "^4.5.3",
     "highcharts": "^8.2.2",
     "highcharts-angular": "^2.8.2",
+    "moment": "^2.29.1",
     "ng-fullcalendar": "^2.0.3",
     "primeicons": "^4.1.0",
     "primeng": "^11.0.0-rc.2",
