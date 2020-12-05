@@ -127,11 +127,19 @@ export class PostsComponent implements OnInit {
               this.exacttext = "Holiday"
               this.color = colors.red
             }
+            // this.exactdata = [
+            //   {
+            //     start: startOfDay(this.date),
+            //     title: this.exacttext,
+            //     color: this.color,
+
+            //   },
+            // ]
             this.exactdata = [
               {
-                start: startOfDay(this.date),
-                title: this.exacttext,
-                color: this.color,
+                title: 'Event 1',
+                color: colors.yellow,
+                start: new Date(),
               },
             ]
           }
@@ -145,7 +153,8 @@ export class PostsComponent implements OnInit {
       }
     );
     this.events = this.exactdata1;
-    
+    // console.log(this.events)
+
 
   }
 

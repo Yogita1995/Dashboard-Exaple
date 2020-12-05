@@ -21,6 +21,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+
+
 // import { DemoUtilsModule } from '../demo-utils/module';
 // import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -62,6 +65,7 @@ FullCalendarModule.registerPlugins([
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
     
     // DemoUtilsModule,
 
