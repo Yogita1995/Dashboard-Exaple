@@ -7,14 +7,20 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AllservicesService {
-  public baseurl:string="http://13.234.200.96:6600/monthly_attendance_details";
+  public attandancedetail:string="http://13.234.200.96:6600/monthly_attendance_details";
+  public leavedetails:string=" http://13.234.200.96:6600/leaves_details"
 
   constructor(private http: HttpClient) { }
 
   attendaceDetails(data,config){
-    return this.http.post(this.baseurl,data, config).pipe(map(result => {
+    return this.http.post(this.attandancedetail,data, config).pipe(map(result => {
       return result;
     }));
 
+  }
+  getLeaveDetails(data,config){
+    return this.http.post(this.leavedetails,data, config).pipe(map(result => {
+      return result;
+    }));
   }
 }

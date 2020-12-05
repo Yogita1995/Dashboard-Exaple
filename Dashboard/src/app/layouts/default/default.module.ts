@@ -13,11 +13,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { CalendarModule } from 'primeng/calendar';
 import { ApproveAttendanceListComponent } from 'src/app/modules/approve-attendance-list/approve-attendance-list.component';
 import { ApplyLeaveComponent } from 'src/app/modules/apply-leave/apply-leave.component';
 import { ApproveAttendanceEditComponent } from 'src/app/modules/approve-attendance-edit/approve-attendance-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+// import { DemoUtilsModule } from '../demo-utils/module';
+// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -48,9 +53,17 @@ FullCalendarModule.registerPlugins([
     MatDatepickerModule,
     MatFormFieldModule,
     FullCalendarModule,
-    CalendarModule,
-    HttpClientModule
-
+    // CalendarModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    
+    // DemoUtilsModule,
 
 
   ]

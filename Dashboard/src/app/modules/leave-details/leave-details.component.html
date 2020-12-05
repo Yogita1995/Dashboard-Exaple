@@ -1,1 +1,117 @@
-<p>leave-details works!</p>
+<div class="row">
+    <div class="col-12">
+        <h1>Leave Balenca : {{leave_balance}}</h1>
+        <h3>Year: {{year}}</h3>
+    </div>
+    <div id="main col-sm-12 col-12" class="mb-2 mt-5">
+        <section id="advanced">
+            <div class="row text-left" matchHeight="card">
+                <div class="col-sm-12">
+                    <div class="card shadow maincardtopmargin">
+                        <div class="card-header no-padding-bottom">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="card-title">Leave Taken </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let key of leavetakenfinal">
+                                            <td>{{key.date}}</td>
+                                            <th *ngIf="key.value=='1'"><span style="color:green">Full Day</span></th>
+                                            <th *ngIf="key.value=='0.5'"><span style="color:red">Half Day</span></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="main col-sm-12 col-12" class="mb-2 mt-5">
+        <section id="advanced">
+            <div class="row text-left" matchHeight="card">
+                <div class="col-sm-12">
+                    <div class="card shadow maincardtopmargin">
+                        <div class="card-header no-padding-bottom">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="card-title">Leaves Apply </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let key of leaveappplyfinal">
+                                            <td>{{key.date}}</td>
+                                            <th *ngIf="key.value=='1'"><span style="color:green">Full Day</span></th>
+                                            <th *ngIf="key.value=='0.5'"><span style="color:red">Half Day</span></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="main col-sm-12 col-12" class="mb-2 mt-5">
+        <section id="advanced">
+            <div class="row text-left" matchHeight="card">
+                <div class="col-sm-12">
+                    <div class="card shadow maincardtopmargin">
+                        <div class="card-header no-padding-bottom">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="card-title">Rejected Leaves </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let key of leave_rejected_final">
+                                            <td>{{key.date}}</td>
+                                            <th *ngIf="key.value=='1'"><span style="color:green">Full Day</span></th>
+                                            <th *ngIf="key.value=='0.5'"><span style="color:red">Half Day</span></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</div>
