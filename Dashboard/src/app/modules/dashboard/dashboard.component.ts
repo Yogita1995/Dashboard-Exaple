@@ -98,12 +98,27 @@ export class DashboardComponent implements OnInit {
             initialView: 'dayGridMonth',
             dateClick: this.handleDateClick.bind(this),
             events: this.exactdata1,
-            headerToolbar: this.header,
+            headerToolbar: {
+              left:"BackwardButton,ForwardButton",
+              center:"title"
+            },
+            customButtons:{
+              ForwardButton:{
+                icon:"right-single-arrow",
+                click:function(){}
+              },
+              BackwardButton:{
+                icon:"left-single-arrow",
+                click:function(){}
+              }
+
+            }
           };
-          console.log(this.calendarOptions);
         }, 500);
       }
     ); 
+
+    
     // if (changes.header?.currentValue) {
     //   this.calendarOptions.headerToolbar = changes.header?.currentValue
     // }
@@ -124,9 +139,9 @@ export class DashboardComponent implements OnInit {
   }
   
   handleDateClick(arg) {
-    this.showModal = true;
-    // this.exactdate = arg.dateStr
-    // console.log(this.exactdate)
+    // this.showModal = true;
+    this.exactdate = arg.dateStr
+    console.log(this.exactdate)
   }
   getdate(arg) {
     let date = ((<HTMLInputElement>document.getElementById("getdate")).value =  arg.dateStr)
