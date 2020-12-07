@@ -1,59 +1,109 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import { Calendar } from '@fullcalendar/core';
-// import { CalendarOptions } from '@fullcalendar/angular';
-import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
-import { $ } from 'protractor';
-import { AllservicesService } from '../services/allservices.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { CalendarDayViewBeforeRenderEvent, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewBeforeRenderEvent, CalendarMonthViewDay, CalendarView, CalendarWeekViewBeforeRenderEvent, DAYS_OF_WEEK } from 'angular-calendar';
+import { addDays, addHours, endOfDay, endOfMonth, isSameDay, isSameMonth, startOfDay, subDays } from 'date-fns';
+import { Subject } from 'rxjs';
 import * as moment from 'moment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AllservicesService } from '../services/allservices.service';
+const colors: any = {
+  red: { 
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  },
+  green: {
+    primary: '#008000',
+    secondary:'#00FF00'
+  }
+};
+
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  styles: [
+    `
+      .red-cell {
+        background-color: red !important;
+      }
+      .blue-cell {
+        background-color: blue !important;
+      }
+    `,
+  ],
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild('ucCalendar') calendarComponent: FullCalendarComponent;
-  @Input() header: { [key: string]: any }
-
-  date: any;
-  currentdate: any;
   data: any;
-  text: any;
-  name: any;
-  showModal: boolean;
-  calendarOptions: CalendarOptions;
+  date: any;
   monthlydata: any = [];
-  title: string;
+  text: any;
+  exacttext: any;
+  color: any;
   exactdata = [];
   exactdata1 = [];
-  exacttext: any;
-  exactdate: any;
-  color: any;
-  finaltext: any;
-  finaldata: any = [];
-  headeroptions: any;
+  events: CalendarEvent[] = [];
+  extactdate: any;
+  cssClass: string;
+
+
+  @ViewChild('modalContent')
+  modalContent: TemplateRef<any>;
+
+  view: CalendarView = CalendarView.Month;
+
+  CalendarView = CalendarView;
+
+  viewDate: Date = new Date();
+
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fa fa-fw fa-pencil"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      }
+    },
+    {
+      label: '<i class="fa fa-fw fa-times"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      }
+    }
+  ];
+
+  refresh: Subject<any> = new Subject();
+
+  activeDayIsOpen: boolean = true;
+
 
 
   constructor(private allservices: AllservicesService, private http: HttpClient) {
-    const name = Calendar.name;
+    // const name = Calendar.name;
 
   }
 
   ngOnInit(): void {
-    this.currentdate = new Date();
-    let dateoriginal=(moment(this.currentdate).format('MMM-YYYY')).toString()
+    this.getAddtence(this.viewDate);
+  
+  }
 
+  getAddtence(viewDate) {
+    this.exactdata1 = [];
+    this.monthlydata = [];
     const userDetails = {
       // "month": "Nov-2020",
-      "month": (moment(this.currentdate).format('MMM-YYYY')).toString(),
+      "month": (moment(viewDate).format('MMM-YYYY')).toString(),
       "id": "59"
     };
-
-    
-
     const config = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
@@ -61,95 +111,88 @@ export class DashboardComponent implements OnInit {
       (x: any) => {
         this.data = x.body
         let obj = JSON.parse(this.data);
-        this.date = obj.month
-        this.monthlydata = obj.Monthly_data
-        for (let object of this.monthlydata) {
-          for (let key in object) {
-            this.date = key
-            this.text = object[key]
-
-            if (this.text == '1') {
-              this.exacttext = "Present"
-              this.color = "green"
+        this.date = obj.month;
+        this.monthlydata = obj.Monthly_data;
+        if(this.monthlydata) {
+          for (let object of this.monthlydata) {
+            for (let key in object) {
+              this.date = key
+              this.text = object[key]
+  
+              if (this.text == '1') {
+                this.exacttext = "Present"
+                this.color = colors.green
+                // this.color.cssClass = 'bg-pink';
+              }
+              else if (this.text == '0') {
+                this.exacttext = "Absent"
+                this.color = colors.red
+              }
+              else if (this.text == '0.5') {
+                this.exacttext = "Half Day"
+                this.color = colors.yellow
+              }
+              else if (this.text == 'holiday') {
+                this.exacttext = "Holiday"
+                this.color = colors.blue
+              }
+              this.exactdata = [
+                {
+                  start: startOfDay(this.date),
+                  title: this.exacttext,
+                  color: this.color,
+  
+                },
+              ]
+              // this.exactdata = [
+              //   {
+              //     title: 'Event 1',
+              //     color: colors.yellow,
+              //     start: new Date(),
+              //   },
+              // ]
             }
-            else if (this.text == '0') {
-              this.exacttext = "Absent"
-              this.color = "red"
+            for (let index = 0; index < this.exactdata.length; index++) {
+              const element = this.exactdata[index];
+              this.exactdata1.push(element)
             }
-            else if (this.text == '0.5') {
-              this.exacttext = "Half Day"
-              this.color = "blue"
-            }
-            else if (this.text == 'holiday') {
-              this.exacttext = "Holiday"
-              this.color = "black"
-            }
-            this.exactdata = [
-              { title: this.exacttext, date: this.date, color: this.color },
-            ]
-          }
-          for (let index = 0; index < this.exactdata.length; index++) {
-            const element = this.exactdata[index];
-            this.exactdata1.push(element)
+            this.refresh.next();
           }
         }
-        setTimeout(() => {
-          this.calendarOptions = {
-            initialView: 'dayGridMonth',
-            dateClick: this.handleDateClick.bind(this),
-            events: this.exactdata1,
-            headerToolbar: {
-              left:"BackwardButton,ForwardButton",
-              center:"title"
-            },
-            customButtons:{
-              ForwardButton:{
-                icon:"right-single-arrow",
-                click:function(){}
-              },
-              BackwardButton:{
-                icon:"left-single-arrow",
-                click:function(){}
-              }
-
-            }
-          };
-        }, 500);
       }
-    ); 
-
-    
-    // if (changes.header?.currentValue) {
-    //   this.calendarOptions.headerToolbar = changes.header?.currentValue
-    // }
-  //   var date1 = this.header.fullCalendar('prev').fullCalendar( 'getDate' );
-  //  console.log(date1)
-  // const slides = document.getElementsByClassName('fc-prev-button');
-
-  // document.getElementById("fc-prev-button").addEventListener("click", loadNewEvents());
-  // console.log(slides)
-
-  // const slides = document.getElementsByClassName('fc-toolbar-title').namedItem
-  // console.log(slides)
-
-  // var slides = <HTMLElement[]<any>document.getElementsByClassName('fc-prev-button');
-
-
-
+    );
+    this.events = this.exactdata1;
   }
-  
-  handleDateClick(arg) {
-    // this.showModal = true;
-    this.exactdate = arg.dateStr
-    console.log(this.exactdate)
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      this.viewDate = date;
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+    }
   }
-  getdate(arg) {
-    let date = ((<HTMLInputElement>document.getElementById("getdate")).value =  arg.dateStr)
-    console.log(date)
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    event.start = newStart;
+    event.end = newEnd;
+    // this.handleEvent('Dropped or resized', event);
+    this.refresh.next();
   }
-  hide() {
-    this.showModal = false;
+
+  handleEvent(action: string, event: CalendarEvent): void {
+    // this.modal.open(this.modalContent, { size: 'lg' });
   }
+
   // ondate(){
   //   var year
   //   var month
@@ -157,6 +200,8 @@ export class DashboardComponent implements OnInit {
   //     alert("strat")
   //   })
   // }
+
+ 
 
 
 

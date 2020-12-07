@@ -17,10 +17,10 @@ export class LeaveDetailsComponent implements OnInit {
   date: string;
   value: any;
   leavetakenfinal: any = [];
-  leaveappply:any=[];
-  leaveappplyfinal:any=[];
-  leave_rejected:any=[];
-  leave_rejected_final:any=[];
+  leaveappply: any = [];
+  leaveappplyfinal: any = [];
+  leave_rejected: any = [];
+  leave_rejected_final: any = [];
   year: any;
 
   constructor(private allServices: AllservicesService) { }
@@ -43,56 +43,57 @@ export class LeaveDetailsComponent implements OnInit {
     this.allServices.getLeaveDetails(userDetails, config).subscribe(
       (x: any) => {
         this.data = x.body;
-        let obj = JSON.parse(this.data);
-        console.log(obj)
+        let obj = JSON.parse(this.data);       
         this.leave_balance = obj.leave_balance
-        this.year=obj.year
+        this.year = obj.year
         let leavetaken = obj.leave_taken;
-        for (let object of leavetaken) {
-          for (let key in object) {
-            this.date = key
-            this.value = object[key]
+        if(leavetaken){
+          for (let object of leavetaken) {
+            for (let key in object) {
+              this.date = key
+              this.value = object[key]
+            }
+            this.leavetaken = [
+              { date: this.date, value: this.value },
+            ]
+            for (let index = 0; index < this.leavetaken.length; index++) {
+              const element = this.leavetaken[index];
+              this.leavetakenfinal.push(element)
+            }
           }
-          this.leavetaken = [
-            { date: this.date, value: this.value },
-          ]
-          for (let index = 0; index < this.leavetaken.length; index++) {
-            const element = this.leavetaken[index];
-            this.leavetakenfinal.push(element)
+        }       
+        let leaveapply = obj.leaves_apply
+        if(leaveapply){
+          for (let object of leaveapply) {
+            for (let key in object) {
+              this.date = key
+              this.value = object[key]
+            }
+            this.leaveappply = [
+              { date: this.date, value: this.value },
+            ]
+            for (let index = 0; index < this.leaveappply.length; index++) {
+              const element = this.leaveappply[index];
+              this.leaveappplyfinal.push(element)
+            }
           }
-        }
-        let leaveapply=obj.leaves_apply
-        for (let object of leaveapply) {
-          for (let key in object) {
-            this.date = key
-            this.value = object[key]
+        }     
+        let leaverejected = obj.leaves_rejected
+        if(leaverejected){
+          for (let object of leaverejected) {
+            for (let key in object) {
+              this.date = key
+              this.value = object[key]
+            }
+            this.leave_rejected = [
+              { date: this.date, value: this.value },
+            ]
+            for (let index = 0; index < this.leave_rejected.length; index++) {
+              const element = this.leave_rejected[index];
+              this.leave_rejected_final.push(element)
+            }
           }
-          this.leaveappply = [
-            { date: this.date, value: this.value },
-          ]
-          for (let index = 0; index < this.leaveappply.length; index++) {
-            const element = this.leaveappply[index];
-            this.leaveappplyfinal.push(element)
-          }
-        }
-
-        let leaverejected=obj.leaves_rejected
-        for (let object of leaverejected) {
-          for (let key in object) {
-            this.date = key
-            this.value = object[key]
-          }
-          this.leave_rejected = [
-            { date: this.date, value: this.value },
-          ]
-          for (let index = 0; index < this.leave_rejected.length; index++) {
-            const element = this.leave_rejected[index];
-            this.leave_rejected_final.push(element)
-          }
-        }
-
-
-
+        }    
       }
     );
   }

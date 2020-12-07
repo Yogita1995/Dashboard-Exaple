@@ -1,0 +1,55 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1 class="text-center">Approve Leave Here</h1>
+        <div class="row jumbotron">
+            <div class="col-sm-6 form-group">
+                <label for="name-f">Employee Id</label>
+                <input type="text" class="form-control" name="fname" id="name-f" placeholder="Employee Id" required
+                    formControlName="id" disabled>
+                <small
+                    *ngIf="form.controls['id'].hasError('required') && (form.controls['id'].dirty || form.controls['id'].touched)"
+                    class="text-danger" translate>
+                    Id is required!
+                </small>
+            </div>
+          
+            <div class="col-sm-6 form-group">
+                <label for="email">Apply Date</label>
+                <input type="text" name="date" class="form-control" placeholder="" required formControlName="apply_date" disabled>
+                <small
+                    *ngIf="form.controls['apply_date'].hasError('required') && (form.controls['apply_date'].dirty || form.controls['apply_date'].touched)"
+                    class="text-danger" translate>
+                   Apply date is required!
+                </small>
+            </div>           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Type</label><br>
+                    <input type="text" class="form-control" placeholder="" required formControlName="type" disabled>
+                    <small
+                        *ngIf="form.controls['type'].hasError('required') && (form.controls['type'].dirty || form.controls['type'].touched)"
+                        class="text-danger" translate>
+                        Type is required!
+                    </small>
+                </div>
+            </div>    
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Action</label><br>
+                    <p-dropdown [options]="action" filter="true" [autoDisplayFirst]="false" placeholder="Select Action"
+                        formControlName="action">
+                    </p-dropdown>
+                    <small
+                        *ngIf="form.controls['action'].hasError('required') && (form.controls['action'].dirty || form.controls['action'].touched)"
+                        class="text-danger" translate>
+                        Action is required!
+                    </small>
+                </div>
+            </div>          
+            <div class="col-sm-12 form-group mb-0">
+                <button class="btn btn-primary float-right" [disabled]="form.invalid">Submit</button>
+            </div>
+
+        </div>
+    </form>
+</div>

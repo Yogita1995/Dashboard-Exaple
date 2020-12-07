@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { CalendarDayViewBeforeRenderEvent, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewDay, CalendarView, CalendarWeekViewBeforeRenderEvent, DAYS_OF_WEEK } from 'angular-calendar';
+import { CalendarDayViewBeforeRenderEvent, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewBeforeRenderEvent, CalendarMonthViewDay, CalendarView, CalendarWeekViewBeforeRenderEvent, DAYS_OF_WEEK } from 'angular-calendar';
 import { addDays, addHours, endOfDay, endOfMonth, isSameDay, isSameMonth, startOfDay, subDays } from 'date-fns';
 import { Subject } from 'rxjs';
 import * as moment from 'moment';
@@ -9,8 +9,9 @@ import { AllservicesService } from '../services/allservices.service';
 // import { colors } from '../demo-utils/colors';
 // import {colors} from '../'
 import { WeekViewHour, WeekViewHourColumn } from 'calendar-utils';
+import { color } from 'highcharts';
 const colors: any = {
-  red: {
+  red: { 
     primary: '#ad2121',
     secondary: '#FAE3E3'
   },
@@ -21,6 +22,10 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+  green: {
+    primary: '#008000',
+    secondary:'#00FF00'
   }
 };
 
@@ -29,6 +34,7 @@ const colors: any = {
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
+ 
 
 })
 export class PostsComponent implements OnInit {
@@ -113,11 +119,12 @@ export class PostsComponent implements OnInit {
 
             if (this.text == '1') {
               this.exacttext = "Present"
-              this.color = colors.red
+              this.color = colors.green
+              // this.color.cssClass = 'bg-pink';
             }
             else if (this.text == '0') {
               this.exacttext = "Absent"
-              this.color = colors.blue
+              this.color = colors.red
             }
             else if (this.text == '0.5') {
               this.exacttext = "Half Day"
@@ -125,23 +132,23 @@ export class PostsComponent implements OnInit {
             }
             else if (this.text == 'holiday') {
               this.exacttext = "Holiday"
-              this.color = colors.red
+              this.color = colors.blue
             }
-            // this.exactdata = [
-            //   {
-            //     start: startOfDay(this.date),
-            //     title: this.exacttext,
-            //     color: this.color,
-
-            //   },
-            // ]
             this.exactdata = [
               {
-                title: 'Event 1',
-                color: colors.yellow,
-                start: new Date(),
+                start: startOfDay(this.date),
+                title: this.exacttext,
+                color: this.color,
+
               },
             ]
+            // this.exactdata = [
+            //   {
+            //     title: 'Event 1',
+            //     color: colors.yellow,
+            //     start: new Date(),
+            //   },
+            // ]
           }
           for (let index = 0; index < this.exactdata.length; index++) {
             const element = this.exactdata[index];
@@ -153,7 +160,8 @@ export class PostsComponent implements OnInit {
       }
     );
     this.events = this.exactdata1;
-    // console.log(this.events)
+    console.log(this.events)
+ 
 
 
   }
@@ -204,6 +212,7 @@ export class PostsComponent implements OnInit {
   //   });
   //   this.refresh.next();
   // }
+
 
 
 

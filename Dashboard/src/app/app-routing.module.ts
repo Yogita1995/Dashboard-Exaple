@@ -30,7 +30,7 @@ const routes: Routes = [
       component:ApplyLeaveComponent
     },
     {
-      path:'approve-edit',
+      path:'approve-edit/:id/:date/:type',
       component:ApproveAttendanceEditComponent
     },
     {

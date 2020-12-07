@@ -12,45 +12,40 @@
                     </div>
                     <div class="card-body">                       
                         <div class="table-responsive">
-                            <table class="table table-hover" id="myTable">
+                            <table class="table table-hover table-bordered" id="myTable">
                                 <thead>
                                     <tr>
                                         <th>S No.</th>
                                         <th>Employee Id</th>
-                                        <th>Employee Name</th>
-                                        <th>Date</th>                                        
-                                        <th>Actions</th>
-                                        <th>Status</th>
+                                        <th>Upcoming Leaves</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>                                 
-                                    <tr>
+                                    <tr *ngFor="let item of allleavesdata">
                                         <th scope="row">1</th>
-                                        <td>Abc123</td>
-                                        <td>ABCD PQRST</td>
-                                        <td>20/12/2020</td>                                        
-                                        <td>
-                                            <button class="btn btn-raised btn-primary mr-1"
-                                            [routerLink]="['../approve-edit']">
-                                              Action
-                                            </button>                                         
-                                        </td>
-                                        <th><span style="color:green">Approved</span></th>
+                                        <td>{{item.id}}</td>
+                                        <ng-container>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            <tr *ngFor="let key of upcommingleavesallfinal">
+                                                <td>{{key.date}}</td>  
+                                                <td *ngIf="key.value=='1'"><span style="color:green">Full Day</span></td>
+                                                <td *ngIf="key.value=='0.5'"><span style="color:red">Half Day</span></td>
+                                                <td>
+                                                    <button class="btn btn-raised btn-primary mr-1"
+                                                    [routerLink]="['../approve-edit',item.id,key.date,key.value]">
+                                                      Action
+                                                    </button>                                         
+                                                </td>
+                                            </tr>                                                                               
+                                        
+                                        </ng-container>
+                                        
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Abc123567</td>
-                                        <td>XYZ PQRST</td>
-                                        <td>4/08/2020</td>                                        
-                                        <td>
-                                            <button class="btn btn-raised btn-primary mr-1"
-                                                >
-                                               Action
-                                            </button>
-                                           
-                                        </td>
-                                        <th><span style="color:red">Pending</span></th>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
