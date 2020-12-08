@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit {
   events: CalendarEvent[] = [];
   extactdate: any;
   cssClass: string;
+  
 
 
   @ViewChild('modalContent')
@@ -120,6 +121,7 @@ export class DashboardComponent implements OnInit {
               this.text = object[key]
   
               if (this.text == '1') {
+            //  document.getElementsByClassName('cal-day-badge')
                 this.exacttext = "Present"
                 this.color = colors.green
                 // this.color.cssClass = 'bg-pink';
@@ -162,6 +164,7 @@ export class DashboardComponent implements OnInit {
       }
     );
     this.events = this.exactdata1;
+
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -191,7 +194,9 @@ export class DashboardComponent implements OnInit {
 
   handleEvent(action: string, event: CalendarEvent): void {
     // this.modal.open(this.modalContent, { size: 'lg' });
+    
   }
+
 
   // ondate(){
   //   var year

@@ -22,6 +22,7 @@ export class LeaveDetailsComponent implements OnInit {
   leave_rejected: any = [];
   leave_rejected_final: any = [];
   year: any;
+  yearly_leave:any;
 
   constructor(private allServices: AllservicesService) { }
 
@@ -44,8 +45,9 @@ export class LeaveDetailsComponent implements OnInit {
       (x: any) => {
         this.data = x.body;
         let obj = JSON.parse(this.data);       
-        this.leave_balance = obj.leave_balance
-        this.year = obj.year
+        this.leave_balance = obj.leave_balance;
+        this.yearly_leave=obj.yearly_leave;
+        this.year = obj.year;
         let leavetaken = obj.leave_taken;
         if(leavetaken){
           for (let object of leavetaken) {

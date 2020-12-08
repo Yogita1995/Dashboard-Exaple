@@ -19,12 +19,15 @@ export class ApplyLeaveComponent implements OnInit {
   msg: any;
   dates: any = [];
   id: any;
-  type1: any;
+  type1: any; 
+  data1:any;
+  comments: any;
 
   constructor(private formBuilder: FormBuilder, private allservices: AllservicesService) {
     this.type = [{ label: 'Full Day', value: '1' },
     { label: 'Half Day', value: '0.5' },
-    ];
+    ];   
+   
   }
 
   ngOnInit(): void {
@@ -34,35 +37,61 @@ export class ApplyLeaveComponent implements OnInit {
       from_date: new FormControl('', [Validators.required]),
       to_date: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
+      comments: new FormControl('', [Validators.required]),
 
+    })
+    this.form.controls['type'].valueChanges.subscribe({
+      next: value => {        
+        const parentId = this.form.controls['type'].value;
+        if (value === '1') {
+          this.form.controls['to_date'].enable();          
+        } 
+         else if (value === '0.5') {          
+           this.form.controls['to_date'].disable();
+          //  this.form.controls['to_date'].setValue=null
+         } 
+      }
     })
   }
 
   onSubmit() {
-    let formdata = this.form.value
-    let fromdate = formdata.from_date
-    let todate = formdata.to_date
-    this.type1 = formdata.type
-    this.id = formdata.id
-    const data =
-    {
-      "id": this.id,
-      "from_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
-      "to_date": (moment(todate).format('DD-MM-YYYY')).toString(),
-      "type": this.type1
+    let formdata = this.form.value;
+    let fromdate = formdata.from_date;
+    let todate = formdata.to_date;
+    this.type1 = formdata.type;
+    this.id = formdata.id;
+    this.comments=formdata.comments;
+    if(formdata.type=='1'){
+      this.data1 =
+      {
+        "id": this.id,
+        "from_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
+        "to_date": (moment(todate).format('DD-MM-YYYY')).toString(),
+        "type": this.type1,
+        "comments":this.comments
+      } 
     }
+    else if(formdata.type=='0.5')
+    {
+     this.data1 =
+      {
+        "id": this.id,
+        "from_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
+        "to_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
+        "type": this.type1,
+        "comments":this.comments
+      }
+    }
+     
     const config = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
-    this.allservices.applyleavedetail(data, config).subscribe(
+    this.allservices.applyleavedetail(this.data1, config).subscribe(
       (x: any) => {
         this.data = x.body
         let obj = JSON.parse(this.data);
         this.msg = obj.data
         this.dates = obj.dates
-
-
-
         this.openconfirmationmodal()
       }
     );
@@ -83,19 +112,18 @@ export class ApplyLeaveComponent implements OnInit {
         //   'Your imaginary file has been deleted.',
         //   'success'
         // )
-        this.confirmleave()
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
+        this.confirmleave();     
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your Action is Cancelled..!',
           'error'
         )
       }
     })
   }
   confirmleave() {
+   
     const data = {
       dates: this.dates,
       id: this.id,
@@ -105,7 +133,7 @@ export class ApplyLeaveComponent implements OnInit {
     const config = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
-    // console.log(data)
+   
 
     this.allservices.confirmLeavedetail(data,config).subscribe(
       (x:any)=>{      

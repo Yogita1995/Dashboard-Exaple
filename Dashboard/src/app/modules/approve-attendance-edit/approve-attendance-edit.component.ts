@@ -37,6 +37,7 @@ export class ApproveAttendanceEditComponent implements OnInit {
       apply_date: new FormControl(this.date),
       action: new FormControl('', [Validators.required]),
       type: new FormControl(this.type),
+      comments:new FormControl('')
 
     })
   }
@@ -46,7 +47,8 @@ export class ApproveAttendanceEditComponent implements OnInit {
       apply_date: this.date,
       id: this.id,
       type: this.type,
-      action:formvalue.action
+      action:formvalue.action,
+      comments:formvalue.comments
 
     }
     console.log(data)

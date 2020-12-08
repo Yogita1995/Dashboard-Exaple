@@ -12,6 +12,19 @@
                     Id is required!
                 </small>
             </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Type</label><br>
+                    <p-dropdown [options]="type" filter="true" [autoDisplayFirst]="false" placeholder="Select Type"
+                        formControlName="type">
+                    </p-dropdown>
+                    <small
+                        *ngIf="form.controls['type'].hasError('required') && (form.controls['type'].dirty || form.controls['type'].touched)"
+                        class="text-danger" translate>
+                        Type is required!
+                    </small>
+                </div>
+            </div>          
           
             <div class="col-sm-6 form-group">
                 <label for="email">From</label>
@@ -31,19 +44,16 @@
                     To date is required!
                 </small>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Type</label><br>
-                    <p-dropdown [options]="type" filter="true" [autoDisplayFirst]="false" placeholder="Select Type"
-                        formControlName="type">
-                    </p-dropdown>
-                    <small
-                        *ngIf="form.controls['type'].hasError('required') && (form.controls['type'].dirty || form.controls['type'].touched)"
-                        class="text-danger" translate>
-                        Type is required!
-                    </small>
-                </div>
-            </div>           
+            <div class="col-sm-6 form-group">
+                <label for="name-f">Comments</label>
+                <textarea class="form-control"  placeholder="Comments"></textarea>
+                <small
+                    *ngIf="form.controls['comments'].hasError('required') && (form.controls['comments'].dirty || form.controls['comments'].touched)"
+                    class="text-danger" translate>
+                    Id is required!
+                </small>
+            </div>
+                     
             <div class="col-sm-12 form-group mb-0">
                 <button class="btn btn-primary float-right" [disabled]="form.invalid">Submit</button>
             </div>
