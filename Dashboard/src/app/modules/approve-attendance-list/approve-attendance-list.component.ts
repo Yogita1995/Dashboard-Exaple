@@ -17,6 +17,7 @@ export class ApproveAttendanceListComponent implements OnInit {
   value: any;
   upcommingleavesall:any=[];
   upcommingleavesallfinal:any=[];
+  offset = 0;
 
   constructor(private allservice:AllservicesService) { }
 

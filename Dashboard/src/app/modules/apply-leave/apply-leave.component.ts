@@ -37,7 +37,7 @@ export class ApplyLeaveComponent implements OnInit {
       from_date: new FormControl('', [Validators.required]),
       to_date: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
-      comments: new FormControl('', [Validators.required]),
+      // comments: new FormControl('', [Validators.required]),
 
     })
     this.form.controls['type'].valueChanges.subscribe({
@@ -60,7 +60,7 @@ export class ApplyLeaveComponent implements OnInit {
     let todate = formdata.to_date;
     this.type1 = formdata.type;
     this.id = formdata.id;
-    this.comments=formdata.comments;
+    // this.comments=formdata.comments;
     if(formdata.type=='1'){
       this.data1 =
       {
@@ -68,7 +68,7 @@ export class ApplyLeaveComponent implements OnInit {
         "from_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
         "to_date": (moment(todate).format('DD-MM-YYYY')).toString(),
         "type": this.type1,
-        "comments":this.comments
+        // "comments":this.comments
       } 
     }
     else if(formdata.type=='0.5')
@@ -79,7 +79,7 @@ export class ApplyLeaveComponent implements OnInit {
         "from_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
         "to_date": (moment(fromdate).format('DD-MM-YYYY')).toString(),
         "type": this.type1,
-        "comments":this.comments
+        // "comments":this.comments
       }
     }
      
