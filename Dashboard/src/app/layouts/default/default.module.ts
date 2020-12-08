@@ -9,7 +9,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 import { ApproveAttendanceListComponent } from 'src/app/modules/approve-attendance-list/approve-attendance-list.component';
 import { ApplyLeaveComponent } from 'src/app/modules/apply-leave/apply-leave.component';
 import { ApproveAttendanceEditComponent } from 'src/app/modules/approve-attendance-edit/approve-attendance-edit.component';
@@ -19,14 +18,9 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SchedulerModule } from 'angular-calendar-scheduler';
-
-
-
-
-
-
-
-
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -56,6 +50,9 @@ import { SchedulerModule } from 'angular-calendar-scheduler';
       useFactory: adapterFactory,
     }),
     SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
     
 
 

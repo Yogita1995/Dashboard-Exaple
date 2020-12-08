@@ -6,6 +6,7 @@ import { ApproveAttendanceEditComponent } from './modules/approve-attendance-edi
 import { ApproveAttendanceListComponent } from './modules/approve-attendance-list/approve-attendance-list.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { LeaveDetailsComponent } from './modules/leave-details/leave-details.component';
+import { LoginPageComponent } from './modules/login-page/login-page.component';
 import { PostsComponent } from './modules/posts/posts.component';
 
 
@@ -13,33 +14,38 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    children: [{
-      path: '',
-      component: DashboardComponent
-    },
-    {
-      path: 'posts',
-      component:PostsComponent
-    },
-    {
-      path:'aprrove-list',
-      component:ApproveAttendanceListComponent
-    },
-    {
-      path:'apply-leave',
-      component:ApplyLeaveComponent
-    },
-    {
-      path:'approve-edit/:id/:date/:type',
-      component:ApproveAttendanceEditComponent
-    },
-    {
-      path:'leave-details',
-      component:LeaveDetailsComponent
-    }
+    children: [
+      // {
+      //   path: '',
+      //   component: LoginPageComponent
+      // },
+      {
+        path: '',
+        component: DashboardComponent
+      },
+      {
+        path: 'posts',
+        component: PostsComponent
+      },
+      {
+        path: 'aprrove-list',
+        component: ApproveAttendanceListComponent
+      },
+      {
+        path: 'apply-leave',
+        component: ApplyLeaveComponent
+      },
+      {
+        path: 'approve-edit/:id/:date/:type',
+        component: ApproveAttendanceEditComponent
+      },
+      {
+        path: 'leave-details',
+        component: LeaveDetailsComponent
+      }
 
 
-  ]
+    ]
   }
 ];
 

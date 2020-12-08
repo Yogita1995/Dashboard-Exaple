@@ -1,12 +1,26 @@
 <app-header (toggleSideBarForMe)="sideBarToggle($event)"></app-header>
 <mat-drawer-container>
+
     <mat-drawer mode="side" [opened]="sideBarOpen">
         <app-sidebar></app-sidebar>
     </mat-drawer>
-    <!-- <div class="text-center"> -->
         <mat-drawer-content>
             <router-outlet></router-outlet>
         </mat-drawer-content>
-    <!-- </div> -->
+    
 </mat-drawer-container>
 <app-footer></app-footer>
+<!-- <div>
+    <mat-card fxFlex="25">
+        <form class="example-form">
+        <mat-form-field>
+          <input matInput placeholder="UserName">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="password">
+          </mat-form-field>
+      
+        
+      </form>
+      </mat-card>
+</div> -->

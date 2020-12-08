@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { SharedModule } from './shared/shared.module';
 import { LeaveDetailsComponent } from './modules/leave-details/leave-details.component';
+import { LoginPageComponent } from './modules/login-page/login-page.component';
 
 
 
@@ -15,6 +16,7 @@ import { LeaveDetailsComponent } from './modules/leave-details/leave-details.com
   declarations: [
     AppComponent,
     LeaveDetailsComponent,
+    LoginPageComponent,
       
     
   

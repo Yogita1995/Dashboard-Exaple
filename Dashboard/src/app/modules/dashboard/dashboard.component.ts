@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import * as moment from 'moment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AllservicesService } from '../services/allservices.service';
+import { element } from 'protractor';
 const colors: any = {
   red: { 
     primary: '#ad2121',
@@ -100,6 +101,7 @@ export class DashboardComponent implements OnInit {
   getAddtence(viewDate) {
     this.exactdata1 = [];
     this.monthlydata = [];
+    
     const userDetails = {
       // "month": "Nov-2020",
       "month": (moment(viewDate).format('MMM-YYYY')).toString(),
@@ -164,6 +166,7 @@ export class DashboardComponent implements OnInit {
       }
     );
     this.events = this.exactdata1;
+   
 
   }
 
