@@ -1,15 +1,19 @@
-<app-header (toggleSideBarForMe)="sideBarToggle($event)"></app-header>
-<mat-drawer-container>
+<!-- <app-header (toggleSideBarForMe)="sideBarToggle($event)" style="background-color:#FAFAFA;"></app-header> -->
 
-    <mat-drawer mode="side" [opened]="sideBarOpen">
-        <app-sidebar></app-sidebar>
-    </mat-drawer>
-        <mat-drawer-content>
-            <router-outlet></router-outlet>
-        </mat-drawer-content>
-    
+<!-- <app-header style="background-color:#FAFAFA;"></app-header> -->
+
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen"  position="start">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+  <mat-drawer mode="side" [opened]="sideBarOpen"  position="end">
+    <app-right-sidebar></app-right-sidebar>
+  </mat-drawer>
 </mat-drawer-container>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
 <!-- <div>
     <mat-card fxFlex="25">
         <form class="example-form">

@@ -1,12 +1,15 @@
-ul li{
-    list-style: none;
+
+ul li {
+  list-style: none;
 }
-.mat-toolbar{
-    background-color: darkblue;
+.mat-toolbar {
+  background-color: white;
+  border-right: 2px solid gray;
+  width: 250px;
 }
-.iconcolor{
-    color:white
+.iconcolor {
+  color: black;
 }
-.icontext{
-    color:white
+.icontext {
+  color: black;
 }

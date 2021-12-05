@@ -12,6 +12,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { RightSidebarComponent } from './components/right-sidebar/right-sidebar.component';
 
 
 
@@ -21,6 +22,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    RightSidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    RightSidebarComponent
   ]
 })
 export class SharedModule { }

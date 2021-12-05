@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { SharedModule } from './shared/shared.module';
-import { LeaveDetailsComponent } from './modules/leave-details/leave-details.component';
-import { LoginPageComponent } from './modules/login-page/login-page.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+// import { LeaveDetailsComponent } from './modules/leave-details/leave-details.component';
+// import { LoginPageComponent } from './modules/login-page/login-page.component';
 
 
 
@@ -15,8 +16,9 @@ import { LoginPageComponent } from './modules/login-page/login-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LeaveDetailsComponent,
-    LoginPageComponent,
+    DashboardComponent,
+    // LeaveDetailsComponent,
+    // LoginPageComponent,
       
     
   

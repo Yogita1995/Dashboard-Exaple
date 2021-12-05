@@ -1,21 +1,56 @@
-<mat-nav-list>
-    <div class="profile-card">
+<!-- <div style="border-right: 2px solid gray; height: 100%;"> -->
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon class="iconcolor">menu</mat-icon>
+    </button>
+    <span class="icontext">LOGO</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-nav-list style="margin-top: 50px">
+  <!-- <div class="profile-card">
         <div class="header">
             <h2>Employee Name</h2>
             <h4>example@email.com</h4>
         </div>
-        <!-- <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">  -->
-    </div>
-    <mat-divider></mat-divider>
-    <h2 matSubheader>Attendance Detail</h2>    
-    <a mat-list-item routerLinkActive="list=item-active" routerLink="/">Attendance</a>
-    <a mat-list-item routerLinkActive="list=item-active" routerLink="/aprrove-list">Approve Attendace List</a>
-    <a mat-list-item routerLinkActive="list=item-active" routerLink="/apply-leave">Apply Leave</a>
-    <a mat-list-item routerLinkActive="list=item-active" routerLink="/leave-details">Leave Details</a>
-    
-    <!-- <mat-divider></mat-divider> -->
-    
-    <!-- <h2 matSubheader>Tools</h2>
+    </div> -->
+  <!-- <mat-divider></mat-divider> -->
+  <a mat-list-item routerLinkActive="list=item-active" routerLink="/"
+    >   <mat-icon class="iconcolor">dashboard</mat-icon>
+    Dashboard</a
+  >
+  <a
+    mat-list-item
+    routerLinkActive="list=item-active"
+    routerLink="/aprrove-list"
+    >  <mat-icon class="iconcolor">dashboard</mat-icon>Classes</a
+  >
+  <a mat-list-item routerLinkActive="list=item-active" routerLink="/apply-leave"
+    >  <mat-icon class="iconcolor">circle</mat-icon> Resources</a
+  >
+  <a
+    mat-list-item
+    routerLinkActive="list=item-active"
+    routerLink="/leave-details"
+    >  <mat-icon class="iconcolor">circle</mat-icon> Learning plan</a
+  >
+  <a
+    mat-list-item
+    routerLinkActive="list=item-active"
+    routerLink="/leave-details"
+    >  <mat-icon class="iconcolor">message</mat-icon> Chat</a
+  >
+
+  <a
+    mat-list-item
+    routerLinkActive="list=item-active"
+    routerLink="/leave-details"
+    >  <mat-icon class="iconcolor">circle</mat-icon> Settings</a
+  >
+
+  <!-- <mat-divider></mat-divider> -->
+
+  <!-- <h2 matSubheader>Tools</h2>
 
     <a mat-list-item routerLinkActive="list=item-active" routerLink="/contacts">
         <mat-icon>import_contacts</mat-icon>
@@ -25,6 +60,12 @@
         <mat-icon>contact_phone</mat-icon>
         Leads
     </a> -->
-   
-
 </mat-nav-list>
+
+<div class="card text-center" style="margin: 60px auto;width: 200px;background-color: #F5F5FB;border:none">
+  <div class="card-body">
+    <span style="display: block;">Upgrade to <strong>PRO</strong> for more resources</span>
+    <button type="button" class="btn btn-primary">Upgrade</button>
+  </div>
+</div>
+<!-- </div> -->
